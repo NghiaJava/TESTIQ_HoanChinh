@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.thanhnghia.testiqnavi">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="TEST IQ"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity android:name=".MenuActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider613550952166812"
+            android:exported="true" />
+
+
+        <activity
+            android:name=".test_activity2"
+            android:label="@string/title_activity_test_activity2"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".PlayActivity" />
+        <activity android:name=".OptionActivity" />
+        <activity android:name=".ShareActivity" />
+        <activity android:name=".ResultActivity"></activity>
+
+        <service
+            android:name=".MyMusicService"
+            android:exported="false"
+            android:stopWithTask="true"
+            />
+    </application>
+
+</manifest>
