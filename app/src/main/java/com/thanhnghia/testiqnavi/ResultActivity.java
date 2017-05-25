@@ -11,7 +11,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.facebook.share.model.ShareLinkContent;
@@ -25,6 +27,8 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
     private Button btnResultShare;
     private Button btnHome;
     private int score;
+    
+    private ListView listViewHistory;
 
     // share FB
 
@@ -50,11 +54,16 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         Bundle b = getIntent().getExtras();
         // diem so
         score = b.getInt("score");
-        // hien thi
+        // list history
+        String[] listHistory = getIntent().getStringArrayExtra("strListHistory");
+        // hien thi score
         txtResult.setText("Your IQ is: " + (72+score*5) + ". \n THANK YOU !!!");
-
+        // hien thi history
+        listViewHistory = (ListView) findViewById (R.id.listViewHistory);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1 , listHistory);
+        listViewHistory.setAdapter(arrayAdapter);
+        
         // share FB
-
         shareDialog = new ShareDialog(this);  // intialize facebook shareDialog.
 
     }

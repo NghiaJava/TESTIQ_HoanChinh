@@ -24,11 +24,16 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnAns3;
     private Button btnAns4;
 
+    private Button btnBack;
+    private Button btnNext;
+
     private List<Question> quesList;
     private int qid = 0;
     private Question currentQ;
     private int score = 0;
 
+    private Player player01;
+    //private int[] arrLog;
     CountDownTimer countDownTimer;
 
 
@@ -296,6 +301,12 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("Name: ", log);
         }
 
+        //New Player
+        player01 = new Player ();
+        //arrLog = new int[22];
+        //for(int i = 0 ; i < 22; i++){
+        //    arrLog[i] = -1;
+        //}
 
         //Toast.makeText(PlayActivity.this, "da tao xong db", Toast.LENGTH_LONG).show();
         quesList = db.getAllQuestions();
@@ -308,6 +319,9 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         btnAns2 = (Button) findViewById (R.id.btnPlay2);
         btnAns3 = (Button) findViewById (R.id.btnPlay3);
         btnAns4 = (Button) findViewById (R.id.btnPlay4);
+
+        btnBack = (Button) findViewById (R.id.btnBack);
+        btnNext = (Button) findViewById (R.id.btnNext);
 
         txtScore = (TextView) findViewById (R.id.txtScore);
         txtTime = (TextView) findViewById (R.id.txtTime);
@@ -344,10 +358,14 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         btnAns2.setOnClickListener (this);
         btnAns3.setOnClickListener (this);
         btnAns4.setOnClickListener (this);
+
+        btnBack.setOnClickListener (this);
+        btnNext.setOnClickListener (this);
     }
 
     // kiem tra cau tra loi
     public void getAnswer(String AnsString){
+
         if(currentQ.getAns().equals(AnsString) == true){
             score++;
             txtScore.setText ("Score: " + score);
@@ -355,22 +373,32 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         }else {
             //Toast.makeText(PlayActivity.this, "dap an sai", Toast.LENGTH_LONG).show();
 
-            Intent intent = new Intent (PlayActivity.this, ResultActivity.class);
-            //Bundle b = new Bundle ();
-            //b.putInt ("score", score);
-            //intent.putExtras (b);
-            //startActivity (intent);
-            //finish ();
+            //Intent intent = new Intent (PlayActivity.this, ResultActivity.class);
+        }
+
+        if(qid > 0) {
+            player01.setAnsPlayer_qid (qid - 1, AnsString);
+            player01.setAnsCorrect_qid (qid - 1, currentQ.getAns ());
+            player01.set_score (score);
         }
 
         if(qid < 20){
             currentQ = quesList.get (qid);
             setQuestionView();
+
         } else {
+
+            String[] myStrings = new String[20];
+            for(int i = 0 ; i < 20 ; i++){
+                myStrings[i] = "Ques " + (i + 1) + ": " + "Your ans: " + player01.getStringArrAnsPlayer (i)
+                + "\n    Correct answer: " + player01.getStringArrAnsCorrect (i);
+            }
+            //intent.putExtra("strings", myStrings);
 
             Intent intent = new Intent (PlayActivity.this, ResultActivity.class);
             Bundle b = new Bundle ();
             b.putInt ("score", score);
+            intent.putExtra("strListHistory", myStrings);
             intent.putExtras (b);
             startActivity (intent);
             finish ();
@@ -389,49 +417,92 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setQuestionView(){
 
-        txtQuestion.setText (currentQ.getQuestion ());
+        /*txtQuestion.setText (currentQ.getQuestion ());
         btnAns1.setText (currentQ.get_ansA ());
         btnAns2.setText (currentQ.get_ansB ());
         btnAns3.setText (currentQ.get_ansC ());
         btnAns4.setText (currentQ.get_ansD ());
+        qid++; */
 
-        qid++;
+
+
+        // neu cau hoi chua tra loi
+        if(player01.getStringArrAnsPlayer (qid) == " "){
+
+            txtQuestion.setText (currentQ.getQuestion ());
+            btnAns1.setText (currentQ.get_ansA ());
+            btnAns2.setText (currentQ.get_ansB ());
+            btnAns3.setText (currentQ.get_ansC ());
+            btnAns4.setText (currentQ.get_ansD ());
+
+            btnAns1.setEnabled (true);
+            btnAns2.setEnabled (true);
+            btnAns3.setEnabled (true);
+            btnAns4.setEnabled (true);
+
+            qid++;
+
+        } else{ // cau hoi da tra loi
+            txtQuestion.setText (currentQ.getQuestion ());
+            btnAns1.setText (currentQ.get_ansA ());
+            btnAns2.setText (currentQ.get_ansB ());
+            btnAns3.setText (currentQ.get_ansC ());
+            btnAns4.setText (currentQ.get_ansD ());
+
+            btnAns1.setEnabled (false);
+            btnAns2.setEnabled (false);
+            btnAns3.setEnabled (false);
+            btnAns4.setEnabled (false);
+
+            qid++;
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnPlay1:
-                checkANS(btnAns1.getText().toString());
+                //player01.setAnsPlayer_qid (qid, btnAns1.getText().toString());
+                getAnswer(btnAns1.getText().toString());
                 break;
 
             case R.id.btnPlay2:
-                checkANS(btnAns2.getText().toString());
+                //player01.setAnsPlayer_qid (qid, btnAns2.getText().toString());
+                getAnswer(btnAns2.getText().toString());
                 break;
 
             case R.id.btnPlay3:
-                checkANS(btnAns3.getText().toString());
+                //player01.setAnsPlayer_qid (qid, btnAns3.getText().toString());
+                getAnswer(btnAns3.getText().toString());
                 break;
 
             case  R.id.btnPlay4:
-                checkANS(btnAns4.getText().toString());
+                //player01.setAnsPlayer_qid (qid, btnAns4.getText().toString());
+                getAnswer(btnAns4.getText().toString());
+                break;
+
+            case  R.id.btnBack:
+                BackQues();
+                break;
+
+            case  R.id.btnNext:
+                NextQues();
                 break;
         }
     }
 
-    public void checkANS(String stringAns){
-
-        getAnswer (stringAns);
-
-        /*
-        if(currentQ.getAns().equals (stringAns)){//currentQ.getAns().equals(stringAns)){
-            Toast.makeText(PlayActivity.this, "dap an dung", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(PlayActivity.this, "dap an sai", Toast.LENGTH_LONG).show();
+    private void BackQues() {
+        if(qid >= 2) {
+            qid = qid - 2;
+            currentQ = quesList.get (qid);
+            setQuestionView ();
         }
+    }
 
-        currentQ = quesList.get (qid);
-        setQuestionView ();
-        */
+    private void NextQues() {
+        if(qid < 20) {
+            currentQ = quesList.get (qid);
+            setQuestionView ();
+        }
     }
 }

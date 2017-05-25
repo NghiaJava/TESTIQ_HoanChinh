@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/BTL_TESTIQ.iml" filepath="$PROJECT_DIR$/BTL_TESTIQ.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/iqnavi-master.iml" filepath="$PROJECT_DIR$/iqnavi-master.iml" />
     </modules>
   </component>
 </project>

@@ -74,7 +74,7 @@
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="top"
                     >
 
@@ -97,7 +97,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/btnPlay3"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"/>
 
                     <Button
                         android:text="Ans4"
@@ -105,6 +105,40 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/btnPlay4"
                         android:textAllCaps="false" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:paddingTop="22dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <Button
+                            android:text="BackQues"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/btnBack"
+                            android:layout_weight="1"
+                            android:layout_marginRight="6dp"
+                            android:layout_marginLeft="12dp"
+                            android:textAllCaps="false"/>
+
+                        <Button
+                            android:text="NextQues"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/btnNext"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="6dp"
+                            android:layout_marginRight="12dp"
+                            android:textAllCaps="false"/>
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
