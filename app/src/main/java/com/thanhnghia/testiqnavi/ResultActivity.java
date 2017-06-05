@@ -3,6 +3,9 @@ package com.thanhnghia.testiqnavi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 
@@ -15,8 +18,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.share.ShareApi;
 import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.ShareOpenGraphAction;
+import com.facebook.share.model.ShareOpenGraphContent;
+import com.facebook.share.model.ShareOpenGraphObject;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
 
 
@@ -101,16 +111,17 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
 
     // When Share this tutorial on FB button is clicked
     public void shareTutorialonFB(View v){
+
         if (ShareDialog.canShow(ShareLinkContent.class)) {
             ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                    .setContentTitle("Wow - Your IQ is: " + (72+score*5))
-                    .setImageUrl(Uri.parse("http://www.kinesissurvey.com/wp-content/uploads/2013/11/IQ.png"))
-                    .setContentDescription(
-                            "Developer By TTN")
+                    //.setContentTitle("Title")
+                    .setQuote("Wow - Your IQ is: " + (score*5 + 72))
                     .setContentUrl(Uri.parse("www.thanhnghia.com"))
+                    //.setRef("#testIQ")
                     .build();
 
-            shareDialog.show(linkContent);  // Show facebook ShareDialog
+            shareDialog.show(linkContent);
         }
+
     }
 }

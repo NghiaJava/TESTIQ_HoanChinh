@@ -16,6 +16,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.model.ShareOpenGraphAction;
+import com.facebook.share.model.ShareOpenGraphContent;
+import com.facebook.share.model.ShareOpenGraphObject;
 import com.facebook.share.widget.ShareDialog;
 
 import java.security.MessageDigest;
@@ -112,15 +115,35 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
             if (ShareDialog.canShow(ShareLinkContent.class)) {
                 ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                        .setContentTitle("TEST IQ")
-                        .setImageUrl(Uri.parse("http://www.kinesissurvey.com/wp-content/uploads/2013/11/IQ.png"))
-                        .setContentDescription(
-                                "Developer By TTN")
+                        //.setContentTitle("Title")
+                        .setQuote("TEST IQ - NGHIA")
                         .setContentUrl(Uri.parse("www.thanhnghia.com"))
+                        //.setRef("#testIQ")
                         .build();
 
-                shareDialog.show(linkContent);  // Show facebook ShareDialog
+                shareDialog.show(linkContent);
             }
+            /*
+        // Create an object
+        ShareOpenGraphObject object = new ShareOpenGraphObject.Builder()
+                .putString("og:type", "TESTIQS.TESTIQ")
+                .putString("og:title", "TEST IQ - TT.NGHIA")
+                .build();
+
+        // Create an action
+        ShareOpenGraphAction action = new ShareOpenGraphAction.Builder()
+                .setActionType("TESTIQ.play")
+                .putObject("TESTIQ", object)
+                .build();
+
+        // Create the content
+        ShareOpenGraphContent content = new ShareOpenGraphContent.Builder()
+                .setPreviewPropertyName("TESTIQ")
+                .setAction(action)
+                .build();
+
+
+        ShareDialog.show(MenuActivity.this, content); */
     }
 
     private void exitGame(){

@@ -4,15 +4,12 @@
     android:id="@+id/activity_option"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.thanhnghia.testiqnavi.OptionActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bg2">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,58 +17,60 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:weightSum="1">
 
                     <TextView
-                        android:text="OPTION"
+                        android:id="@+id/txtOption1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txtOption1"
+                        android:text="OPTION"
+                        android:textAlignment="center"
+                        android:textColor="@color/cardview_light_background"
                         android:textSize="36sp"
-                        android:textStyle="normal|bold"
-                        android:textAlignment="center"/>
+                        android:textStyle="normal|bold" />
 
                     <TextView
-                        android:text="TOUCH TO SET MUSIC"
+                        android:id="@+id/txtOption2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txtOption2"
+                        android:text="TOUCH TO SET MUSIC"
+                        android:textColor="@color/cardview_light_background"
+                        android:textAlignment="center"
                         android:textSize="24sp"
-                        android:textStyle="normal|bold"
-                        android:textAlignment="center"/>
+                        android:textStyle="normal|bold" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <SeekBar
-                        android:layout_width="match_parent"
-                        android:layout_height="52dp"
                         android:id="@+id/seekBarMusic"
-                        />
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <Button
-                        android:text="home"
-                        android:layout_width="match_parent"
+                        android:id="@+id/btnOptionHome"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/btnOptionHome"/>
+                        android:layout_gravity="center"
+                        android:text="home" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

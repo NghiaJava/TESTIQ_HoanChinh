@@ -4,7 +4,7 @@
     android:id="@+id/activity_result"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@drawable/bg2"
     tools:context="com.thanhnghia.testiqnavi.ResultActivity">
 
     <LinearLayout
@@ -38,6 +38,8 @@
                             android:text="Congratulation !!! \n Your IQ is: 100 \n"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:textColor="@color/cardview_light_background"
+                            android:layout_gravity="center"
                             android:id="@+id/txtResult"
                             android:textSize="24sp"
                             android:textStyle="normal|bold" />
@@ -50,20 +52,29 @@
 
                         <Button
                             android:text="play again"
-                            android:layout_width="match_parent"
+                            android:layout_width="180dp"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="22dp"
+                            android:background="@android:color/holo_orange_light"
                             android:id="@+id/btnPlayAgain" />
 
                         <Button
                             android:text="share"
-                            android:layout_width="match_parent"
+                            android:layout_width="180dp"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="22dp"
+                            android:background="@android:color/holo_orange_light"
                             android:id="@+id/btnResultShare"/>
 
                         <Button
                             android:text="home"
-                            android:layout_width="match_parent"
+                            android:layout_width="180dp"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="22dp"
+                            android:background="@android:color/holo_orange_light"
                             android:id="@+id/btnResultHome" />
                     </LinearLayout>
                 </LinearLayout>
@@ -80,6 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/listViewHistory"
+                android:background="@color/cardview_light_background"
                 android:layout_weight="1.72"/>
         </LinearLayout>
 
